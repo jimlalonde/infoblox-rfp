@@ -325,14 +325,24 @@ function StageCard({ stage, zone }) {
 
 function ProcessFlow() {
   const [tab, setTab] = useState("current");
-  const tabs = [{ id: "current", label: "Current state" }, { id: "future", label: "Proposed future" }, { id: "delta", label: "Key changes" }];
+  const tabs = [{ id: "current", label: "Current state" }, { id: "future", label: "Possible future" }, { id: "delta", label: "Key changes" }];
   const data = tab === "current" ? STAGES_CURRENT : STAGES_FUTURE;
 
   return (
     <Section id="process">
       <SectionLabel>Process architecture</SectionLabel>
       <SectionTitle>From / To lifecycle design</SectionTitle>
-      <Body>Click any stage to expand system details, diagnostic findings, or proposed changes.</Body>
+      <Body>
+        The current-state map below reflects what we have observed across your Salesforce and Marketo
+        configuration: how leads move through the funnel, where objects are created, and where ownership
+        transfers between teams. The possible future state is not prescriptive. It represents one
+        architecture pattern that resolves the structural issues we identified in the diagnostic,
+        restoring standard lifecycle definitions, consolidating the BDR workflow to a single object,
+        and creating a governed conversion gate between qualification and sales. We present it as a
+        starting point for discussion, not a final answer. The right design will emerge from
+        collaborative workshops with your Sales Ops, Marketing Ops, and IT stakeholders.
+      </Body>
+      <Body>Click any stage to expand system details, diagnostic findings, or possible changes.</Body>
 
       <div style={{ display: "flex", gap: 4, marginBottom: 32, padding: 4, background: "rgba(0,0,0,0.03)", borderRadius: 12 }}>
         {tabs.map(t => (
