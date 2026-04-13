@@ -2,26 +2,26 @@
 import { useState, useEffect } from "react";
 
 const C = {
-  bg: "#FAFAF8",
+  bg: "#F0EFE9",
   surface: "#FFFFFF",
-  text: "rgba(0,0,0,0.85)",
-  muted: "rgba(0,0,0,0.5)",
-  hint: "rgba(0,0,0,0.3)",
-  faint: "rgba(0,0,0,0.06)",
-  purple: { dot: "#7857FF", text: "#5B3FCC", bg: "rgba(120,87,255,0.06)", border: "rgba(120,87,255,0.2)", accent: "#7857FF" },
-  green: { dot: "#10B981", text: "#047857", bg: "rgba(16,185,129,0.06)", border: "rgba(16,185,129,0.2)", accent: "#10B981" },
-  blue: { dot: "#3B82F6", text: "#1D4ED8", bg: "rgba(59,130,246,0.06)", border: "rgba(59,130,246,0.2)", accent: "#3B82F6" },
-  amber: "#F59E0B",
-  red: "#DC2626",
-  pw: "#D04A02",
+  text: "#101820",
+  muted: "#575858",
+  hint: "#636363",
+  faint: "rgba(16,24,32,0.06)",
+  green: { dot: "#00BE4C", text: "#008C38", bg: "rgba(0,190,76,0.06)", border: "rgba(0,190,76,0.2)", accent: "#00BE4C" },
+  teal: { dot: "#12C2D3", text: "#0C818E", bg: "rgba(18,194,211,0.06)", border: "rgba(18,194,211,0.2)", accent: "#12C2D3" },
+  blue: { dot: "#438AFF", text: "#2A6AD4", bg: "rgba(67,138,255,0.06)", border: "rgba(67,138,255,0.2)", accent: "#438AFF" },
+  amber: "#FEDD00",
+  red: "#f26522",
+  brand: "#00BE4C",
 };
-const zoneMap = { marketing: C.purple, qualification: C.green, sales: C.blue };
+const zoneMap = { marketing: C.green, qualification: C.teal, sales: C.blue };
 
 function Section({ id, children, dark }) {
   return (
     <section id={id} style={{
       padding: "clamp(60px, 10vw, 120px) 24px",
-      background: dark ? "#1A1A18" : "transparent",
+      background: dark ? "#101820" : "transparent",
       color: dark ? "rgba(255,255,255,0.9)" : C.text,
       position: "relative",
     }}>
@@ -101,7 +101,7 @@ function Nav() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         padding: "0 24px", height: 56,
-        background: scrolled ? "rgba(250,250,248,0.92)" : "transparent",
+        background: scrolled ? "rgba(240,239,233,0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "1px solid transparent",
@@ -109,7 +109,7 @@ function Nav() {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <div style={{ maxWidth: 800, width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="#" style={{ fontSize: 13, fontWeight: 700, color: C.pw, textDecoration: "none", letterSpacing: "-0.01em" }}>PwC</a>
+          <a href="#" style={{ fontSize: 13, fontWeight: 700, color: C.brand, textDecoration: "none", letterSpacing: "-0.01em" }}>PwC</a>
           <div className="nav-links" style={{ display: "flex", gap: 24 }}>
             {links.map(l => (
               <a key={l.href} href={l.href} style={{
@@ -139,7 +139,7 @@ function Nav() {
       {mobileOpen && (
         <div style={{
           position: "fixed", top: 56, left: 0, right: 0, bottom: 0,
-          zIndex: 99, background: "rgba(250,250,248,0.98)",
+          zIndex: 99, background: "rgba(240,239,233,0.98)",
           backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center", gap: 32,
@@ -166,7 +166,7 @@ function Hero() {
       <div style={{ maxWidth: 800, margin: "0 auto", width: "100%" }}>
         <div style={{
           fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
-          color: C.pw, marginBottom: 24,
+          color: C.brand, marginBottom: 24,
         }}>PwC &middot; Infoblox &middot; Jazz Program</div>
         <h1 style={{
           fontSize: "clamp(36px, 7vw, 64px)", fontWeight: 800, letterSpacing: "-0.04em",
@@ -185,7 +185,7 @@ function Hero() {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
           <a href="#approach" style={{
             display: "inline-block", padding: "12px 28px", borderRadius: 8,
-            background: C.text, color: "#fff", fontSize: 14, fontWeight: 600,
+            background: C.brand, color: "#fff", fontSize: 14, fontWeight: 600,
             textDecoration: "none", letterSpacing: "-0.01em",
           }}>View our approach</a>
           <a href="#diagnostic" style={{
@@ -224,7 +224,7 @@ function Diagnostic() {
             padding: "20px 22px", borderRadius: 12,
             border: `1px solid ${C.faint}`, background: C.surface,
           }}>
-            <div style={{ fontSize: 10, fontWeight: 600, color: C.pw, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>{f.label}</div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: C.brand, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>{f.label}</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: C.text, marginBottom: 8, letterSpacing: "-0.01em" }}>{f.title}</div>
             <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>{f.body}</div>
           </div>
@@ -457,7 +457,7 @@ function Approach() {
               <span style={{ fontSize: 32, fontWeight: 800, color: "rgba(255,255,255,0.08)", letterSpacing: "-0.04em" }}>{p.num}</span>
               <span style={{ fontSize: 18, fontWeight: 700, color: "rgba(255,255,255,0.9)", letterSpacing: "-0.02em" }}>{p.name}</span>
             </div>
-            <div style={{ fontSize: 11, fontWeight: 600, color: C.pw, marginBottom: 16 }}>{p.weeks}</div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: C.brand, marginBottom: 16 }}>{p.weeks}</div>
             <div style={{ marginBottom: 16 }}>
               {p.deliverables.map((d, di) => (
                 <div key={di} style={{
@@ -471,7 +471,7 @@ function Approach() {
             </div>
             <div style={{
               padding: "12px 16px", borderRadius: 8,
-              background: "rgba(255,255,255,0.04)", borderLeft: `3px solid ${C.pw}`,
+              background: "rgba(255,255,255,0.04)", borderLeft: `3px solid ${C.brand}`,
             }}>
               <div style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>Outcome</div>
               <div style={{ fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.65)" }}>{p.outcomes}</div>
@@ -508,7 +508,7 @@ function Timeline() {
             {phaseBreaks.includes(i) && (
               <div style={{
                 padding: "6px 0", marginBottom: 4,
-                fontSize: 10, fontWeight: 700, color: C.pw,
+                fontSize: 10, fontWeight: 700, color: C.brand,
                 textTransform: "uppercase", letterSpacing: "0.1em",
                 borderTop: `1px solid ${C.faint}`,
               }}>
@@ -518,7 +518,7 @@ function Timeline() {
             {i === 0 && (
               <div style={{
                 padding: "6px 0", marginBottom: 4,
-                fontSize: 10, fontWeight: 700, color: C.pw,
+                fontSize: 10, fontWeight: 700, color: C.brand,
                 textTransform: "uppercase", letterSpacing: "0.1em",
               }}>Phase 1: Discover & diagnose</div>
             )}
