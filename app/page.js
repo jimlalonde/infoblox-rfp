@@ -601,9 +601,9 @@ function Team() {
 function WhyPwC() {
   const points = [
     { title: "We think in operating models, not tools", body: "This is not a Salesforce configuration project. It is a revenue operations redesign that touches how Sales, Marketing, BDR, Channel, and Analytics teams work together. We bring the business strategy lens alongside the technical depth." },
-    { title: "Deep Marketo + Salesforce interlock expertise", body: "We understand how these two systems should work together at the data model level: sync architecture, lifecycle program design, scoring frameworks, attribution plumbing, and the conversion mechanics that connect them." },
     { title: "Configuration, not customization", body: "Aligned with your guiding principles. We bias toward OOB Salesforce and Marketo capabilities, industry-standard patterns, and scalable architecture. The goal is a system that works as intended and can be maintained without specialized tribal knowledge." },
     { title: "Built for where you are going", body: "Whether public company readiness, AI-enabled pipeline operations, or scale through channel. The architecture we recommend will account for your end-state, not just your current pain." },
+    { title: "Deep Marketo + Salesforce interlock expertise", body: "We understand how these two systems should work together at the data model level: sync architecture, lifecycle program design, scoring frameworks, attribution plumbing, and the conversion mechanics that connect them." },
   ];
 
   const sfStats = [
@@ -626,12 +626,6 @@ function WhyPwC() {
     { value: "15+", label: "Active Territories", detail: "Global delivery capability with local market expertise" },
   ];
 
-  const adobeDifferentiators = [
-    { title: "Business-led, technology-enabled", body: "Start with business outcomes and align technology to strategic goals: customer acquisition, loyalty, brand differentiation, and operational efficiency." },
-    { title: "Deep industry and functional expertise", body: "Sector-specific insights from financial services, healthcare, consumer markets, and industrial products applied to highly-regulated and complex environments." },
-    { title: "Innovation and NextGen technology", body: "Pioneer AI- and GenAI-enabled accelerators to transform content, digital experiences, insights, and customer journeys into competitive advantages." },
-    { title: "Focus on trust, risk, and compliance", body: "Data privacy, consent management, and regulatory compliance built into every solution to ensure responsible data use and trust-building." },
-  ];
 
   return (
     <Section id="why-pwc" dark>
@@ -714,18 +708,6 @@ function WhyPwC() {
           ))}
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
-          {adobeDifferentiators.map((d, i) => (
-            <div key={i} style={{
-              padding: "18px 22px", borderRadius: 10,
-              border: "1px solid rgba(255,255,255,0.08)",
-              background: "rgba(255,255,255,0.03)",
-            }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginBottom: 4, letterSpacing: "-0.01em" }}>{d.title}</div>
-              <div style={{ fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.45)" }}>{d.body}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </Section>
   );
