@@ -615,15 +615,22 @@ function WhyPwC() {
     { value: "20", label: "Certified Technical Architects", detail: "The most CTAs of any SI in AMER and EMEA" },
   ];
 
-  const competencies = [
-    { num: "01", label: "Customer experience strategy and design" },
-    { num: "02", label: "MarTech commerce design and implementation" },
-    { num: "03", label: "Marketing operations model design" },
-    { num: "04", label: "Personalization and content strategy" },
-    { num: "05", label: "Data privacy and consent management" },
-    { num: "06", label: "Customer analytics and forecasting" },
-    { num: "07", label: "Value realization" },
-    { num: "08", label: "Customer journey and campaign orchestration" },
+  const adobeStats = [
+    { value: "Platinum", label: "Solution Partner", detail: "Adobe Platinum Solution Partner with GenStudio Ready designation" },
+    { value: "2025", label: "Partner of the Year", detail: "Adobe Solution Partner of the Year for Digital Experience (United Kingdom, Ireland)" },
+    { value: "Leader", label: "Gartner 2025", detail: "Emerging Leader for Generative AI Consulting and Implementation Services" },
+    { value: "4", label: "Specializations", detail: "RT-CDP, Marketo Engage, and AEM across Americas and EMEA" },
+    { value: "1,500+", label: "CX & Marketing Pros", detail: "Professionals with global customer experience and marketing expertise" },
+    { value: "320+", label: "Adobe Certifications", detail: "Adobe certifications and accreditations across the practice" },
+    { value: "6", label: "Rapid Deploy Solutions", detail: "Accredited and rapid deployment solutions for accelerated time-to-value" },
+    { value: "15+", label: "Active Territories", detail: "Global delivery capability with local market expertise" },
+  ];
+
+  const adobeDifferentiators = [
+    { title: "Business-led, technology-enabled", body: "Start with business outcomes and align technology to strategic goals: customer acquisition, loyalty, brand differentiation, and operational efficiency." },
+    { title: "Deep industry and functional expertise", body: "Sector-specific insights from financial services, healthcare, consumer markets, and industrial products applied to highly-regulated and complex environments." },
+    { title: "Innovation and NextGen technology", body: "Pioneer AI- and GenAI-enabled accelerators to transform content, digital experiences, insights, and customer journeys into competitive advantages." },
+    { title: "Focus on trust, risk, and compliance", body: "Data privacy, consent management, and regulatory compliance built into every solution to ensure responsible data use and trust-building." },
   ];
 
   return (
@@ -674,30 +681,48 @@ function WhyPwC() {
         </div>
       </div>
 
-      {/* MarTech Competencies */}
+      {/* Adobe / Marketo Practice Credentials */}
       <div style={{ marginTop: 56 }}>
         <div style={{
           fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
           color: "rgba(255,255,255,0.3)", marginBottom: 16,
-        }}>PwC Competencies</div>
+        }}>PwC Adobe Alliance</div>
         <h3 style={{
           fontSize: "clamp(22px, 3.5vw, 30px)", fontWeight: 800, letterSpacing: "-0.03em",
           lineHeight: 1.15, margin: "0 0 12px", color: "rgba(255,255,255,0.95)",
-        }}>Digital accelerators and proven expertise</h3>
-        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 32px", maxWidth: 600 }}>
-          PwC delivers end-to-end MarTech capability from strategy through implementation, with
-          proven success transforming B2B marketing and lead management for enterprise clients.
+        }}>Powering AI-enabled experience transformation at scale</h3>
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 12px", maxWidth: 600 }}>
+          Core focus areas: Generative and Agentic AI &middot; Content and Digital Experience &middot;
+          Customer Journeys &middot; Data and Insights &middot; Value Realization &middot; Personalization at Scale
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 10 }}>
-          {competencies.map((c, i) => (
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 32px", maxWidth: 600 }}>
+          Directly relevant to this engagement: our Marketo Engage specialization covers lifecycle
+          program design, scoring frameworks, lead management architecture, and the Salesforce
+          sync configuration at the center of Infoblox&rsquo;s transformation.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
+          {adobeStats.map((s, i) => (
             <div key={i} style={{
-              padding: "16px 18px", borderRadius: 10,
+              padding: "20px 20px", borderRadius: 12,
               border: "1px solid rgba(255,255,255,0.08)",
               background: "rgba(255,255,255,0.03)",
-              display: "flex", alignItems: "flex-start", gap: 10,
             }}>
-              <span style={{ fontSize: 20, fontWeight: 800, color: "rgba(255,255,255,0.08)", letterSpacing: "-0.03em", flexShrink: 0, lineHeight: 1 }}>{c.num}</span>
-              <span style={{ fontSize: 13, lineHeight: 1.45, color: "rgba(255,255,255,0.65)", fontWeight: 500 }}>{c.label}</span>
+              <div style={{ fontSize: 28, fontWeight: 800, color: "#f26522", letterSpacing: "-0.03em", marginBottom: 4 }}>{s.value}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.04em" }}>{s.label}</div>
+              <div style={{ fontSize: 12, lineHeight: 1.5, color: "rgba(255,255,255,0.4)" }}>{s.detail}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
+          {adobeDifferentiators.map((d, i) => (
+            <div key={i} style={{
+              padding: "18px 22px", borderRadius: 10,
+              border: "1px solid rgba(255,255,255,0.08)",
+              background: "rgba(255,255,255,0.03)",
+            }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginBottom: 4, letterSpacing: "-0.01em" }}>{d.title}</div>
+              <div style={{ fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.45)" }}>{d.body}</div>
             </div>
           ))}
         </div>
