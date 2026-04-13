@@ -109,9 +109,12 @@ function Nav() {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <div style={{ maxWidth: 800, width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="#" style={{ fontSize: 12, fontWeight: 700, textDecoration: "none", letterSpacing: "-0.01em" }}>
-            <span style={{ color: "#D04A02" }}>PwC Response for</span>{" "}
-            <span style={{ color: C.brand }}>Infoblox Lead to Opportunity Program &mdash; April 2026</span>
+          <a href="#" style={{ fontSize: 13, fontWeight: 700, textDecoration: "none", letterSpacing: "-0.01em" }}>
+            <span style={{ color: "#D04A02" }}>PwC</span>
+            <span style={{ color: C.hint }}> &middot; </span>
+            <span style={{ color: C.brand }}>Infoblox</span>
+            <span style={{ color: C.hint }}> &middot; </span>
+            <span style={{ color: C.brand }}>Jazz Program</span>
           </a>
           <div className="nav-links" style={{ display: "flex", gap: 24 }}>
             {links.map(l => (
