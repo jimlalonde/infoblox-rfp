@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 const C = {
-  bg: "#F0EFE9",
+  bg: "#FAFAF8",
   surface: "#FFFFFF",
   text: "#101820",
   muted: "#575858",
@@ -101,7 +101,7 @@ function Nav() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         padding: "0 24px", height: 56,
-        background: scrolled ? "rgba(240,239,233,0.92)" : "transparent",
+        background: scrolled ? "rgba(250,250,248,0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "1px solid transparent",
@@ -145,7 +145,7 @@ function Nav() {
       {mobileOpen && (
         <div style={{
           position: "fixed", top: 56, left: 0, right: 0, bottom: 0,
-          zIndex: 99, background: "rgba(240,239,233,0.98)",
+          zIndex: 99, background: "rgba(250,250,248,0.98)",
           backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center", gap: 32,
