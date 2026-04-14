@@ -96,6 +96,7 @@ function Nav() {
     { href: "#approach", label: "Approach" },
     { href: "#timeline", label: "Timeline" },
     { href: "#team", label: "Team" },
+    { href: "#commercials", label: "Commercials" },
     { href: "#why-pwc", label: "Why PwC" },
   ];
   return (
@@ -934,6 +935,95 @@ function Team() {
   );
 }
 
+/* ─── COMMERCIALS ─── */
+function Commercials() {
+  const fees = [
+    { label: "Lead-to-Opportunity Assessment", amount: "$xxx,xxx" },
+    { label: "Less PwC Investment", amount: "($xx,xxx)" },
+    { label: "Proposed Fees", amount: "$xxx,xxx", bold: true },
+    { label: "Expenses (Capped at 8%)", amount: "$xx,xxx" },
+    { label: "Grand Total", amount: "$xxx,xxx", bold: true, border: true },
+  ];
+
+  const assumptions = [
+    "Infoblox will designate subject matter experts across Sales Ops, Marketing Ops, IT, and BDR leadership, available for interviews, workshops, and information gathering",
+    "SOW does not include any implementation services \u2014 this engagement delivers the diagnostic, architecture, and roadmap",
+    "Grand total is inclusive of expenses, which will be billed at cost and capped at 8%",
+  ];
+
+  return (
+    <Section id="commercials">
+      <SectionLabel>Commercials</SectionLabel>
+      <SectionTitle>Proposed investment</SectionTitle>
+      <div style={{ display: "flex", gap: 32, marginTop: 32, flexWrap: "wrap" }}>
+        <div style={{ flex: "1 1 300px", minWidth: 280 }}>
+          <Body>
+            We are energized by the opportunity to partner with Infoblox at this pivotal moment. Our
+            proposed fees reflect a deliberate investment of senior leadership, deep Salesforce and
+            Marketo expertise, and AI-forward capabilities to ensure this assessment delivers clear,
+            practical value.
+          </Body>
+          <Body>
+            We approach this engagement not as a standalone project, but as the foundation for a
+            long-term partnership committed to dedicating the time, focus, and resources required
+            to support your success.
+          </Body>
+          <Body>
+            We welcome the opportunity to right-size this work to meet your objectives.
+          </Body>
+        </div>
+
+        <div style={{ flex: "1 1 360px", minWidth: 320 }}>
+          <div style={{
+            borderRadius: 14, border: `1px solid ${C.faint}`, background: C.surface,
+            overflow: "hidden",
+          }}>
+            <div style={{
+              padding: "14px 24px", borderBottom: `1px solid ${C.faint}`,
+              display: "flex", justifyContent: "flex-end",
+            }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color: C.brand, textTransform: "uppercase", letterSpacing: "0.06em" }}>Estimated fee</span>
+            </div>
+            {fees.map((f, i) => (
+              <div key={i} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "center",
+                padding: "12px 24px",
+                borderTop: f.border ? `2px solid ${C.text}` : i > 0 ? `1px solid ${C.faint}` : "none",
+                background: f.bold ? "rgba(0,190,76,0.03)" : "transparent",
+              }}>
+                <span style={{
+                  fontSize: 14, color: C.text,
+                  fontWeight: f.bold ? 700 : 500,
+                }}>{f.label}</span>
+                <span style={{
+                  fontSize: 14, color: C.text,
+                  fontWeight: f.bold ? 700 : 500,
+                  fontVariantNumeric: "tabular-nums",
+                }}>{f.amount}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 24 }}>
+            <div style={{
+              fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 12,
+            }}>Assumptions</div>
+            {assumptions.map((a, i) => (
+              <div key={i} style={{
+                display: "flex", gap: 8, marginBottom: 8,
+                fontSize: 13, lineHeight: 1.6, color: C.muted,
+              }}>
+                <span style={{ color: C.hint, flexShrink: 0 }}>{"\u2022"}</span>
+                <span>{a}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 /* ─── WHY PWC ─── */
 function WhyPwC() {
   const points = [
@@ -1091,6 +1181,7 @@ export default function App() {
       <Approach />
       <Timeline />
       <Team />
+      <Commercials />
       <WhyPwC />
       <Footer />
     </div>
