@@ -92,6 +92,7 @@ function Nav() {
     { href: "#diagnostic", label: "Diagnostic" },
     { href: "#process", label: "Process" },
     { href: "#agentic", label: "AI Vision" },
+    { href: "#reporting", label: "Reporting" },
     { href: "#approach", label: "Approach" },
     { href: "#timeline", label: "Timeline" },
     { href: "#team", label: "Team" },
@@ -649,6 +650,97 @@ function AgenticVision() {
   );
 }
 
+/* ─── REPORTING ─── */
+function Reporting() {
+  const layers = [
+    {
+      icon: "\u2460",
+      title: "A single source of truth for the funnel",
+      subtitle: "Architecture-driven",
+      description: "Today, reporting the lead-to-opportunity funnel requires reconciling data across two objects with misaligned lifecycle definitions. Once the architecture is clean \u2014 standardized stages on the Lead object, a governed conversion gate, and consistent field definitions \u2014 funnel reporting becomes a query, not a project. Stage counts, conversion rates, and time-in-stage metrics pull directly from the system of record without manual transformation.",
+      color: C.green,
+    },
+    {
+      icon: "\u2461",
+      title: "Attribution and velocity you can trust",
+      subtitle: "Scoring & lifecycle-driven",
+      description: "With a recalibrated scoring model and clear MQL/SAL/SQL definitions, marketing and sales share a common language for what each stage means and when transitions happen. Attribution (Bizible/Marketo Measure) connects to clean lifecycle timestamps, giving you accurate first-touch, multi-touch, and pipeline velocity reporting out of the box. No more manual date reconciliation or stage-mapping workarounds.",
+      color: C.teal,
+    },
+    {
+      icon: "\u2462",
+      title: "Real-time pipeline intelligence",
+      subtitle: "Agentic layer-driven",
+      description: "As the agentic capabilities come online, the data gets richer and more timely. Every agent interaction \u2014 outreach sent, response classified, meeting booked, escalation routed \u2014 is logged natively in Salesforce. This creates a continuous stream of pipeline activity data that can power live dashboards, automated executive summaries, and early-warning signals for stalled deals or qualification bottlenecks.",
+      color: C.blue,
+    },
+  ];
+
+  const outcomes = [
+    { metric: "Funnel reports", before: "Manual reconciliation across objects and tools", after: "Single-query from standardized lifecycle stages" },
+    { metric: "Executive readouts", before: "Ops team assembles data over days", after: "Self-service dashboards with live pipeline data" },
+    { metric: "Attribution accuracy", before: "Stage definitions vary, timestamps unreliable", after: "Clean lifecycle events feed Bizible directly" },
+    { metric: "Forecast confidence", before: "BDR activity split across Lead and Opportunity", after: "Unified activity history on governed objects" },
+    { metric: "Agent performance", before: "N/A", after: "Qualification rates, response times, escalation patterns \u2014 all instrumented" },
+  ];
+
+  return (
+    <Section id="reporting">
+      <SectionLabel>Reporting &amp; analytics</SectionLabel>
+      <SectionTitle>From manual assembly to live intelligence</SectionTitle>
+      <Body>
+        One of the most immediate benefits of cleaning up the lifecycle architecture is what it does
+        for reporting. When lifecycle stages are standardized, conversion gates are governed, and
+        activity data lives in the right objects, the manual work of assembling executive readouts
+        largely disappears. The data is already in the shape you need it.
+      </Body>
+      <Body style={{ marginBottom: 32 }}>
+        Each layer of the transformation unlocks a new level of reporting capability &mdash; from
+        accurate funnel metrics to real-time pipeline intelligence.
+      </Body>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 36 }}>
+        {layers.map((l, i) => (
+          <div key={i} style={{
+            padding: "24px 24px", borderRadius: 14,
+            border: `1px solid ${C.faint}`, background: C.surface,
+            borderLeft: `4px solid ${l.color.accent}`,
+          }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 4 }}>
+              <span style={{ fontSize: 20, fontWeight: 800, color: l.color.accent }}>{l.icon}</span>
+              <span style={{ fontSize: 16, fontWeight: 700, color: C.text, letterSpacing: "-0.01em" }}>{l.title}</span>
+            </div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10 }}>{l.subtitle}</div>
+            <div style={{ fontSize: 13, lineHeight: 1.7, color: C.muted }}>{l.description}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.faint}` }}>Before &amp; after</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {outcomes.map((o, i) => (
+          <div key={i} style={{
+            padding: "16px 20px", borderRadius: 10,
+            border: `1px solid ${C.faint}`, background: C.surface,
+          }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 8 }}>{o.metric}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                <span style={{ fontSize: 10, fontWeight: 700, color: C.red, background: "rgba(242,101,34,0.08)", padding: "2px 8px", borderRadius: 4, flexShrink: 0, marginTop: 2 }}>TODAY</span>
+                <span style={{ fontSize: 13, lineHeight: 1.5, color: C.muted }}>{o.before}</span>
+              </div>
+              <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                <span style={{ fontSize: 10, fontWeight: 700, color: C.green.text, background: C.green.bg, padding: "2px 8px", borderRadius: 4, flexShrink: 0, marginTop: 2 }}>FUTURE</span>
+                <span style={{ fontSize: 13, lineHeight: 1.5, color: C.muted }}>{o.after}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 /* ─── APPROACH ─── */
 function Approach() {
   const phases = [
@@ -991,6 +1083,7 @@ export default function App() {
       <Diagnostic />
       <ProcessFlow />
       <AgenticVision />
+      <Reporting />
       <Approach />
       <Timeline />
       <Team />
