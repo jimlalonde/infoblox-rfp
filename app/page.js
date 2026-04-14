@@ -89,16 +89,38 @@ function Nav() {
   }, [mobileOpen]);
 
   const links = [
-    { href: "#diagnostic", label: "Diagnostic" },
-    { href: "#process", label: "Process" },
-    { href: "#agentic", label: "AI Vision" },
-    { href: "#reporting", label: "Reporting" },
+    { href: "#diagnostic", label: "Initial Thoughts" },
+    { href: "#process", label: "What\u2019s Possible" },
     { href: "#approach", label: "Approach" },
-    { href: "#timeline", label: "Timeline" },
     { href: "#team", label: "Team" },
     { href: "#commercials", label: "Commercials" },
-    { href: "#why-pwc", label: "Why PwC" },
   ];
+
+  const sectionToNav = {
+    diagnostic: "#diagnostic",
+    process: "#process", agentic: "#process", reporting: "#process",
+    approach: "#approach", timeline: "#approach",
+    team: "#team",
+    commercials: "#commercials", "why-pwc": "#commercials",
+  };
+
+  const [activeHref, setActiveHref] = useState("");
+
+  useEffect(() => {
+    const ids = Object.keys(sectionToNav);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveHref(sectionToNav[visible[0].target.id] || "");
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
+    ids.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <nav style={{
@@ -120,15 +142,19 @@ function Nav() {
             <span style={{ color: C.muted }}>Jazz Program</span>
           </a>
           <div className="nav-links" style={{ display: "flex", gap: 24 }}>
-            {links.map(l => (
-              <a key={l.href} href={l.href} style={{
-                fontSize: 12, fontWeight: 500, color: C.muted, textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={e => e.target.style.color = C.text}
-              onMouseLeave={e => e.target.style.color = C.muted}
-              >{l.label}</a>
-            ))}
+            {links.map(l => {
+              const isActive = activeHref === l.href;
+              return (
+                <a key={l.href} href={l.href} style={{
+                  fontSize: 12, fontWeight: isActive ? 700 : 500,
+                  color: isActive ? C.brand : C.muted,
+                  textDecoration: "none", transition: "color 0.2s, font-weight 0.2s",
+                }}
+                onMouseEnter={e => { if (!isActive) e.target.style.color = C.text; }}
+                onMouseLeave={e => { if (!isActive) e.target.style.color = C.muted; }}
+                >{l.label}</a>
+              );
+            })}
           </div>
           <button
             className="mobile-menu-btn"
