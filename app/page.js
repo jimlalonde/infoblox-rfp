@@ -218,17 +218,20 @@ function Hero() {
           how Infoblox sells today.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-          <a href="#approach" style={{
-            display: "inline-block", padding: "12px 28px", borderRadius: 8,
-            background: C.brand, color: "#fff", fontSize: 14, fontWeight: 600,
-            textDecoration: "none", letterSpacing: "-0.01em",
-          }}>View our approach</a>
-          <a href="#process" style={{
-            display: "inline-block", padding: "12px 28px", borderRadius: 8,
-            background: "transparent", color: C.text, fontSize: 14, fontWeight: 600,
-            textDecoration: "none", letterSpacing: "-0.01em",
-            border: `1px solid ${C.faint}`,
-          }}>See what&rsquo;s possible</a>
+          {[
+            { href: "#diagnostic", label: "Initial Thoughts" },
+            { href: "#process", label: "See What\u2019s Possible" },
+            { href: "#approach", label: "View Our Approach" },
+          ].map((btn, i) => (
+            <a key={btn.href} href={btn.href} style={{
+              display: "inline-block", padding: "12px 28px", borderRadius: 8,
+              background: i === 0 ? C.brand : "transparent",
+              color: i === 0 ? "#fff" : C.text,
+              fontSize: 14, fontWeight: 600,
+              textDecoration: "none", letterSpacing: "-0.01em",
+              border: i === 0 ? "none" : `1px solid ${C.faint}`,
+            }}>{btn.label}</a>
+          ))}
         </div>
       </div>
     </section>
