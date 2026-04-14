@@ -222,15 +222,17 @@ function Hero() {
             { href: "#diagnostic", label: "Initial Thoughts" },
             { href: "#process", label: "See What\u2019s Possible" },
             { href: "#approach", label: "View Our Approach" },
-          ].map((btn, i) => (
+          ].map((btn) => (
             <a key={btn.href} href={btn.href} style={{
               display: "inline-block", padding: "12px 28px", borderRadius: 8,
-              background: i === 0 ? C.brand : "transparent",
-              color: i === 0 ? "#fff" : C.text,
+              background: C.brand, color: "#fff",
               fontSize: 14, fontWeight: 600,
               textDecoration: "none", letterSpacing: "-0.01em",
-              border: i === 0 ? "none" : `1px solid ${C.faint}`,
-            }}>{btn.label}</a>
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = "#33cb6f"}
+            onMouseLeave={e => e.currentTarget.style.background = C.brand}
+            >{btn.label} &rarr;</a>
           ))}
         </div>
       </div>
