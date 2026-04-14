@@ -54,7 +54,7 @@ function Body({ children, dark, style = {} }) {
     <p style={{
       fontSize: 15, lineHeight: 1.7,
       color: dark ? "rgba(255,255,255,0.55)" : C.muted,
-      margin: "0 0 16px", maxWidth: 600, ...style,
+      margin: "0 0 16px", maxWidth: 800, ...style,
     }}>{children}</p>
   );
 }
@@ -1128,10 +1128,10 @@ function WhyPwC() {
           fontSize: "clamp(22px, 3.5vw, 30px)", fontWeight: 800, letterSpacing: "-0.03em",
           lineHeight: 1.15, margin: "0 0 12px", color: "rgba(255,255,255,0.95)",
         }}>From conversion to cash &mdash; Salesforce expertise that drives revenue</h3>
-        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 8px", maxWidth: 600 }}>
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 8px" }}>
           Lead-to-Cash &middot; AI-Driven Qualifying and Selling &middot; Customer 360 &middot; Managed Services
         </p>
-        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 32px", maxWidth: 600 }}>
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 32px" }}>
           Proven delivery across the full Lead-to-Cash journey &mdash; from SDR operations and lead routing to pipeline acceleration and revenue growth.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
@@ -1159,11 +1159,11 @@ function WhyPwC() {
           fontSize: "clamp(22px, 3.5vw, 30px)", fontWeight: 800, letterSpacing: "-0.03em",
           lineHeight: 1.15, margin: "0 0 12px", color: "rgba(255,255,255,0.95)",
         }}>Powering AI-enabled experience transformation at scale</h3>
-        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 12px", maxWidth: 600 }}>
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 12px" }}>
           Core focus areas: Generative and Agentic AI &middot; Content and Digital Experience &middot;
           Customer Journeys &middot; Data and Insights &middot; Value Realization &middot; Personalization at Scale
         </p>
-        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 32px", maxWidth: 600 }}>
+        <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.45)", margin: "0 0 32px" }}>
           Directly relevant to this engagement: our Marketo Engage specialization covers lifecycle
           program design, scoring frameworks, lead management architecture, and the Salesforce
           sync configuration at the center of Infoblox&rsquo;s transformation.
