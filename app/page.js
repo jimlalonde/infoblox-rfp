@@ -112,9 +112,9 @@ function Nav() {
           <a href="#" style={{ fontSize: 13, fontWeight: 700, textDecoration: "none", letterSpacing: "-0.01em" }}>
             <span style={{ color: "#D04A02" }}>PwC</span>
             <span style={{ color: C.hint }}> &middot; </span>
-            <span style={{ color: C.brand }}>Infoblox</span>
+            <span style={{ color: C.blue.accent }}>Infoblox</span>
             <span style={{ color: C.hint }}> &middot; </span>
-            <span style={{ color: C.brand }}>Jazz Program</span>
+            <span style={{ color: C.blue.accent }}>Jazz Program</span>
           </a>
           <div className="nav-links" style={{ display: "flex", gap: 24 }}>
             {links.map(l => (
@@ -655,7 +655,7 @@ function WhyPwC() {
       <div style={{ marginTop: 56 }}>
         <div style={{
           fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
-          color: "rgba(255,255,255,0.3)", marginBottom: 16,
+          color: "#D04A02", marginBottom: 16,
         }}>PwC Salesforce Practice</div>
         <h3 style={{
           fontSize: "clamp(22px, 3.5vw, 30px)", fontWeight: 800, letterSpacing: "-0.03em",
@@ -674,7 +674,7 @@ function WhyPwC() {
               border: "1px solid rgba(255,255,255,0.08)",
               background: "rgba(255,255,255,0.03)",
             }}>
-              <div style={{ fontSize: 28, fontWeight: 800, color: C.brand, letterSpacing: "-0.03em", marginBottom: 4 }}>{s.value}</div>
+              <div style={{ fontSize: 28, fontWeight: 800, color: "#D04A02", letterSpacing: "-0.03em", marginBottom: 4 }}>{s.value}</div>
               <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.04em" }}>{s.label}</div>
               <div style={{ fontSize: 12, lineHeight: 1.5, color: "rgba(255,255,255,0.4)" }}>{s.detail}</div>
             </div>
@@ -686,7 +686,7 @@ function WhyPwC() {
       <div style={{ marginTop: 56 }}>
         <div style={{
           fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
-          color: "rgba(255,255,255,0.3)", marginBottom: 16,
+          color: "#D04A02", marginBottom: 16,
         }}>PwC Adobe Alliance</div>
         <h3 style={{
           fontSize: "clamp(22px, 3.5vw, 30px)", fontWeight: 800, letterSpacing: "-0.03em",
