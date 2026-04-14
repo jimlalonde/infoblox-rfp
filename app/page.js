@@ -91,6 +91,7 @@ function Nav() {
   const links = [
     { href: "#diagnostic", label: "Diagnostic" },
     { href: "#process", label: "Process" },
+    { href: "#agentic", label: "AI Vision" },
     { href: "#approach", label: "Approach" },
     { href: "#timeline", label: "Timeline" },
     { href: "#team", label: "Team" },
@@ -409,6 +410,230 @@ function ProcessFlow() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+    </Section>
+  );
+}
+
+/* ─── DESIGNED FOR WHAT'S NEXT ─── */
+function AgenticVision() {
+  const horizons = [
+    {
+      num: "H1",
+      title: "Fix the architecture",
+      subtitle: "The 8-week engagement",
+      description: "Restore object model integrity, move the conversion gate, clean the data model, recalibrate scoring. Include a stack rationalization assessment: map every tool to a capability matrix and identify consolidation candidates. This is the prerequisite for everything else.",
+      color: C.green.accent,
+    },
+    {
+      num: "H2",
+      title: "Consolidate and activate agents",
+      subtitle: "Separate engagement, scoped after H1",
+      description: "Consolidate the stack where clear overlap exists. Configure Agentforce SDR on top of the clean architecture. Design human/agent hybrid workflows with escalation logic. Requires the clean data and lifecycle stages from Horizon 1 to be in place.",
+      color: C.teal.accent,
+    },
+    {
+      num: "H3",
+      title: "Expand and optimize",
+      subtitle: "Ongoing partnership",
+      description: "Expand agentic capabilities into post-conversion: stalled opportunity re-engagement, customer lifecycle. Add Sales Coach for meeting prep. Build feedback loops where agent performance data refines the scoring model.",
+      color: C.blue.accent,
+    },
+  ];
+
+  const consolidation = [
+    { tool: "Outreach", action: "Consolidate", target: "Marketo Sales Insight Actions", rationale: "MSI Actions provides native multi-step sales sequences, templated emails, dialer, and activity tracking \u2014 all synced bidirectionally with Marketo and Salesforce. Critical for Agentforce: the agent needs to see the full engagement picture in one place, not across a separate platform." },
+    { tool: "Reactful", action: "Consolidate", target: "Marketo Web Personalization", rationale: "Marketo\u2019s native real-time personalization handles website engagement, content recommendations, and behavioral targeting." },
+    { tool: "PathFactory", action: "Assess", target: "Marketo Engagement Programs", rationale: "If used primarily for content tracks in nurture, Marketo can absorb. If used for buyer-initiated content journeys with session-level analytics, it may warrant keeping." },
+    { tool: "Integrate", action: "Assess", target: "Marketo + LeanData", rationale: "Demand orchestration may overlap with Marketo program management and LeanData routing. Depends on third-party demand gen partner workflows." },
+    { tool: "6Sense", action: "Keep", target: "\u2014", rationale: "Account-level intent data and buying stage signals that neither Marketo nor Salesforce replicate. The intelligence layer that makes the agentic model work." },
+    { tool: "LeanData", action: "Keep", target: "\u2014", rationale: "Lead-to-account matching and routing at Infoblox\u2019s complexity level (partner/MSSP/end-user structures, multi-geo accounts). Salesforce native matching isn\u2019t sufficient yet." },
+    { tool: "Bizible / Marketo Measure", action: "Keep", target: "\u2014", rationale: "Adobe\u2019s own attribution product. Consolidating to it is directionally correct." },
+    { tool: "Highspot", action: "Keep", target: "\u2014", rationale: "Sales enablement content management at the level a sales org needs. Not a Marketo or Salesforce native capability." },
+  ];
+
+  const lifecycle = [
+    {
+      stage: "Pre-MQL",
+      mode: "Fully automated",
+      actors: "Marketo + 6Sense",
+      description: "Marketo handles nurture, scoring, and engagement tracking. 6Sense provides account-level intent signals feeding the scoring model. When a lead crosses the MQL threshold (behavior + fit + intent tier), two things happen simultaneously: the lead status updates and Agentforce SDR picks it up.",
+    },
+    {
+      stage: "MQL \u2192 SAL",
+      mode: "Agent-led, human-supervised",
+      actors: "Agentforce SDR + Data Cloud + SF Sales Engagement",
+      description: "The agent pulls context from Data Cloud (Marketo history, 6Sense intent, ZoomInfo firmographics, SFDC activity). It crafts personalized outreach via Salesforce\u2019s native Sales Engagement (not Outreach), handles response classification, answers initial product questions from Highspot content, manages objections, and drives toward scheduling a meeting. All activity logged natively in SFDC and synced to Marketo.",
+    },
+    {
+      stage: "SAL \u2192 SQL",
+      mode: "Human-led, agent-assisted",
+      actors: "Senior BDR or AE + Sales Coach",
+      description: "The human conducts the qualification meeting with full context from the agent: conversation transcript, qualification notes, objections raised, content consumed. Sales Coach agent provides pre-meeting prep (account research, competitor intel, suggested talk tracks). If qualified, the human triggers SFDC Lead Conversion \u2014 the governed conversion gate.",
+    },
+    {
+      stage: "Post-conversion",
+      mode: "Mixed",
+      actors: "AE + Agentforce",
+      description: "Agents assist AEs with nurturing stalled opportunities, automating follow-up on pending proposals, and re-engaging contacts who\u2019ve gone dark. Operates on the Opportunity and Contact objects post-conversion.",
+    },
+  ];
+
+  const [activeTab, setActiveTab] = useState("lifecycle");
+  const tabs = [
+    { id: "lifecycle", label: "Agent-augmented lifecycle" },
+    { id: "stack", label: "Stack consolidation" },
+    { id: "horizons", label: "Three horizons" },
+  ];
+
+  return (
+    <Section id="agentic">
+      <SectionLabel>Designed for what&rsquo;s next</SectionLabel>
+      <SectionTitle>The agentic opportunity</SectionTitle>
+      <Body>
+        The from/to architecture restores object model integrity and snaps to best practice. That work is
+        necessary but backward-looking. The real question is: if you are going to invest in rewiring the
+        lead-to-opportunity lifecycle, why not design it for a model where agents handle the repetitive
+        qualification work and humans focus on the moments that actually require judgment?
+      </Body>
+      <Body>
+        Infoblox&rsquo;s own guiding principles call out &ldquo;AI Ready&rdquo; as a design principle:
+        systems, processes, and procedures require AI as a consideration for scalability. That is not just
+        tolerance of an agentic recommendation. It is an invitation for one.
+      </Body>
+      <Body style={{ marginBottom: 32 }}>
+        Critically, you cannot do the agentic layer without fixing the architecture first. Agents need
+        clean data, clear lifecycle stages, and reliable scoring. If MQL still means &ldquo;Opportunity
+        created&rdquo; and BDRs are toggling between two objects, no agent can work effectively. The
+        architecture fix is the prerequisite. The agentic model is the payoff.
+      </Body>
+
+      <div style={{ display: "flex", gap: 4, marginBottom: 32, padding: 4, background: "rgba(0,0,0,0.03)", borderRadius: 12 }}>
+        {tabs.map(t => (
+          <button key={t.id} onClick={() => setActiveTab(t.id)} style={{
+            flex: 1, padding: "10px 12px", border: "none", cursor: "pointer", borderRadius: 9,
+            fontSize: 13, fontWeight: activeTab === t.id ? 600 : 500, fontFamily: "inherit",
+            color: activeTab === t.id ? C.text : C.hint,
+            background: activeTab === t.id ? "#fff" : "transparent",
+            boxShadow: activeTab === t.id ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
+            transition: "all 0.2s",
+          }}>{t.label}</button>
+        ))}
+      </div>
+
+      {activeTab === "lifecycle" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <Body style={{ marginBottom: 8 }}>
+            For a company like Infoblox selling network infrastructure and security to enterprise IT teams,
+            the buying signals are structured: firmographic fit is knowable (6Sense, ZoomInfo), behavioral
+            signals are knowable (Marketo), and early outreach sequences are templated. The parts of BDR
+            work that are most automatable are the early qualification steps. The parts that still need
+            humans are the nuanced reads: economic buyer identification, competitive displacement,
+            account context.
+          </Body>
+          {lifecycle.map((l, i) => (
+            <div key={i} style={{
+              padding: "20px 22px", borderRadius: 12,
+              border: `1px solid ${C.faint}`, background: C.surface,
+            }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 4, flexWrap: "wrap" }}>
+                <span style={{ fontSize: 16, fontWeight: 700, color: C.text, letterSpacing: "-0.01em" }}>{l.stage}</span>
+                <span style={{
+                  fontSize: 10, fontWeight: 600, padding: "2px 10px", borderRadius: 20,
+                  background: C.green.bg, color: C.green.text, textTransform: "uppercase", letterSpacing: "0.04em",
+                }}>{l.mode}</span>
+              </div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: C.hint, marginBottom: 8 }}>{l.actors}</div>
+              <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>{l.description}</div>
+            </div>
+          ))}
+          <div style={{
+            padding: "18px 22px", borderRadius: 12,
+            border: `1px dashed ${C.teal.border}`, background: C.teal.bg,
+          }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.teal.text, marginBottom: 6 }}>Impact on the BDR org</div>
+            <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
+              This does not eliminate BDRs. It restructures the role. Instead of a team handling high-volume,
+              low-judgment work (outreach cadences, scheduling, basic screening), a smaller, more senior team
+              focuses on the work that requires human skills: complex account reads, relationship building,
+              competitive situations, and the qualification meetings themselves. The agent handles the volume.
+              The humans handle the judgment. Pipeline coverage goes up. Cost per qualified meeting goes down.
+              Time from MQL to SAL compresses from days to minutes.
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === "stack" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <Body style={{ marginBottom: 8 }}>
+            Before layering agents on top of 30+ platforms, consolidate the foundation. Otherwise you are
+            building AI on top of sprawl, which means agents that cannot see across the data they need to
+            act on. The logic: maximize what Marketo and Salesforce do natively, keep what is genuinely
+            differentiated, and assess the rest.
+          </Body>
+          {consolidation.map((c, i) => {
+            const actionColor = c.action === "Consolidate" ? C.green : c.action === "Assess" ? C.teal : C.blue;
+            return (
+              <div key={i} style={{
+                padding: "16px 20px", borderRadius: 10,
+                border: `1px solid ${C.faint}`, background: C.surface,
+              }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: C.text }}>{c.tool}</span>
+                  <span style={{
+                    fontSize: 10, fontWeight: 600, padding: "2px 10px", borderRadius: 20,
+                    background: actionColor.bg, color: actionColor.text,
+                    textTransform: "uppercase", letterSpacing: "0.04em",
+                  }}>{c.action}</span>
+                  {c.target !== "\u2014" && (
+                    <span style={{ fontSize: 12, color: C.hint }}>&rarr; {c.target}</span>
+                  )}
+                </div>
+                <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>{c.rationale}</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {activeTab === "horizons" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <Body style={{ marginBottom: 8 }}>
+            Three horizons, each building on the last. Horizon 1 is what Infoblox asked for. Horizon 2
+            is the differentiated point of view that shows we are thinking about where they are going.
+            Horizon 3 is the long-term partnership opportunity. All grounded in Infoblox&rsquo;s stated
+            &ldquo;AI Ready&rdquo; guiding principle and native to their Adobe/Salesforce ecosystem.
+          </Body>
+          {horizons.map((h, i) => (
+            <div key={i} style={{
+              padding: "24px 24px", borderRadius: 14,
+              border: `1px solid ${C.faint}`, background: C.surface,
+              borderLeft: `4px solid ${h.color}`,
+            }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 4 }}>
+                <span style={{ fontSize: 24, fontWeight: 800, color: h.color, letterSpacing: "-0.03em" }}>{h.num}</span>
+                <span style={{ fontSize: 17, fontWeight: 700, color: C.text, letterSpacing: "-0.01em" }}>{h.title}</span>
+              </div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10 }}>{h.subtitle}</div>
+              <div style={{ fontSize: 14, lineHeight: 1.7, color: C.muted }}>{h.description}</div>
+            </div>
+          ))}
+          <div style={{
+            padding: "18px 22px", borderRadius: 12,
+            border: `1px dashed ${C.green.border}`, background: C.green.bg,
+          }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.green.text, marginBottom: 6 }}>Why this strengthens the case for Option 2</div>
+            <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
+              Option 2 (unwind) gives you a clean, standard architecture that agents can plug into.
+              Option 3 (full reimplementation) delays the agentic opportunity by 6&ndash;12 months.
+              Option 1 (do nothing) makes agents nearly impossible because the data model cannot
+              support them. The 8-week engagement naturally surfaces the data needed to design
+              Horizon 2: outreach channel mix, BDR activity patterns, and qualification conversion
+              rates by method.
+            </div>
+          </div>
         </div>
       )}
     </Section>
@@ -756,6 +981,7 @@ export default function App() {
       <Hero />
       <Diagnostic />
       <ProcessFlow />
+      <AgenticVision />
       <Approach />
       <Timeline />
       <Team />
