@@ -94,6 +94,7 @@ function Nav() {
     { href: "#approach", label: "Approach" },
     { href: "#team", label: "Team" },
     { href: "#commercials", label: "Commercials" },
+    { href: "#why-pwc", label: "Why PwC" },
   ];
 
   const sectionToNav = {
@@ -101,7 +102,8 @@ function Nav() {
     process: "#process", "process-flow": "#process", agentic: "#process", reporting: "#process",
     approach: "#approach", timeline: "#approach",
     team: "#team",
-    commercials: "#commercials", "why-pwc": "#commercials",
+    commercials: "#commercials",
+    "why-pwc": "#why-pwc",
   };
 
   const [activeHref, setActiveHref] = useState("");
