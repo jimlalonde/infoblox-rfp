@@ -150,7 +150,7 @@ function Nav() {
                   color: isActive ? C.brand : C.muted,
                   textDecoration: "none", transition: "color 0.2s, font-weight 0.2s",
                 }}
-                onMouseEnter={e => { if (!isActive) e.target.style.color = C.text; }}
+                onMouseEnter={e => { if (!isActive) e.target.style.color = C.blue.accent; }}
                 onMouseLeave={e => { if (!isActive) e.target.style.color = C.muted; }}
                 >{l.label}</a>
               );
