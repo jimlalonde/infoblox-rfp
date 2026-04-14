@@ -343,12 +343,17 @@ function ProcessFlow() {
       <Body>
         The current-state map below reflects what we have observed across your Salesforce and Marketo
         configuration: how leads move through the funnel, where objects are created, and where ownership
-        transfers between teams. The possible future state is not prescriptive. It represents one
-        architecture pattern that resolves the structural issues we identified in the diagnostic,
-        restoring standard lifecycle definitions, consolidating the BDR workflow to a single object,
-        and creating a governed conversion gate between qualification and sales. We present it as a
-        starting point for discussion, not a final answer. The right design will emerge from
-        collaborative workshops with your Sales Ops, Marketing Ops, and IT stakeholders.
+        transfers between teams. The possible future state represents one architecture pattern that
+        resolves the structural issues we identified in the diagnostic &mdash; restoring standard lifecycle
+        definitions, consolidating the BDR workflow to a single object, and creating a governed conversion
+        gate between qualification and sales. We present it as a starting point for discussion, not a
+        final answer. The right design will emerge from collaborative workshops with your stakeholders.
+      </Body>
+      <Body>
+        Importantly, this architecture also lays the foundation for what comes next. Clean lifecycle
+        stages, reliable scoring, and a governed data model are exactly what enable the agentic
+        capabilities we explore in the next section &mdash; where AI-driven qualification and intelligent
+        routing can dramatically accelerate pipeline velocity.
       </Body>
       <Body>Click any stage to expand system details, diagnostic findings, or possible changes.</Body>
 
@@ -421,23 +426,23 @@ function AgenticVision() {
   const horizons = [
     {
       num: "H1",
-      title: "Fix the architecture",
+      title: "Build the foundation",
       subtitle: "The 8-week engagement",
-      description: "Restore object model integrity, move the conversion gate, clean the data model, recalibrate scoring. Include a stack rationalization assessment: map every tool to a capability matrix and identify consolidation candidates. This is the prerequisite for everything else.",
+      description: "Restore object model integrity, align lifecycle stages, recalibrate scoring, and create a governed conversion gate. This work immediately improves pipeline visibility and conversion accuracy \u2014 and it creates the clean data layer that makes everything in Horizons 2 and 3 possible. A stack rationalization assessment runs in parallel to identify consolidation opportunities.",
       color: C.green.accent,
     },
     {
       num: "H2",
-      title: "Consolidate and activate agents",
-      subtitle: "Separate engagement, scoped after H1",
-      description: "Consolidate the stack where clear overlap exists. Configure Agentforce SDR on top of the clean architecture. Design human/agent hybrid workflows with escalation logic. Requires the clean data and lifecycle stages from Horizon 1 to be in place.",
+      title: "Activate the agentic layer",
+      subtitle: "Scoped engagement, building on H1",
+      description: "With clean lifecycle data in place, introduce Agentforce SDR for AI-driven early qualification. Consolidate overlapping tools to simplify the integration landscape. Design human/agent hybrid workflows with clear escalation paths \u2014 so agents handle the volume and your team handles the judgment calls.",
       color: C.teal.accent,
     },
     {
       num: "H3",
-      title: "Expand and optimize",
+      title: "Extend intelligence across the lifecycle",
       subtitle: "Ongoing partnership",
-      description: "Expand agentic capabilities into post-conversion: stalled opportunity re-engagement, customer lifecycle. Add Sales Coach for meeting prep. Build feedback loops where agent performance data refines the scoring model.",
+      description: "Expand agentic capabilities beyond qualification into post-conversion: re-engaging stalled opportunities, automating proposal follow-up, and surfacing upsell signals. Add Sales Coach for meeting prep. Build feedback loops where agent performance continuously refines the scoring model.",
       color: C.blue.accent,
     },
   ];
@@ -492,21 +497,21 @@ function AgenticVision() {
       <SectionLabel>Designed for what&rsquo;s next</SectionLabel>
       <SectionTitle>The agentic opportunity</SectionTitle>
       <Body>
-        The from/to architecture restores object model integrity and snaps to best practice. That work is
-        necessary but backward-looking. The real question is: if you are going to invest in rewiring the
-        lead-to-opportunity lifecycle, why not design it for a model where agents handle the repetitive
-        qualification work and humans focus on the moments that actually require judgment?
+        The lifecycle architecture we outlined in the previous section does more than resolve today&rsquo;s
+        structural issues. It creates the clean foundation &mdash; standardized stages, reliable scoring,
+        governed data &mdash; that unlocks an entirely new operating model: one where AI agents handle
+        high-volume qualification and humans focus on the conversations that actually move deals forward.
       </Body>
       <Body>
-        Infoblox&rsquo;s own guiding principles call out &ldquo;AI Ready&rdquo; as a design principle:
-        systems, processes, and procedures require AI as a consideration for scalability. That is not just
-        tolerance of an agentic recommendation. It is an invitation for one.
+        Infoblox has already signaled this ambition with &ldquo;AI Ready&rdquo; as a design principle.
+        The tools are largely in place: Agentforce in Salesforce, AI capabilities expanding in Marketo,
+        and 6Sense providing the intent intelligence layer. What&rsquo;s been missing is the architectural
+        foundation to connect them. That is what the lifecycle work enables.
       </Body>
       <Body style={{ marginBottom: 32 }}>
-        Critically, you cannot do the agentic layer without fixing the architecture first. Agents need
-        clean data, clear lifecycle stages, and reliable scoring. If MQL still means &ldquo;Opportunity
-        created&rdquo; and BDRs are toggling between two objects, no agent can work effectively. The
-        architecture fix is the prerequisite. The agentic model is the payoff.
+        The vision below shows what becomes possible once that foundation is in place &mdash; a
+        progressively more intelligent pipeline that expands coverage, compresses cycle times,
+        and lets your team operate at a scale that would be impossible with headcount alone.
       </Body>
 
       <div style={{ display: "flex", gap: 4, marginBottom: 32, padding: 4, background: "rgba(0,0,0,0.03)", borderRadius: 12 }}>
@@ -525,12 +530,12 @@ function AgenticVision() {
       {activeTab === "lifecycle" && (
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <Body style={{ marginBottom: 8 }}>
-            For a company like Infoblox selling network infrastructure and security to enterprise IT teams,
-            the buying signals are structured: firmographic fit is knowable (6Sense, ZoomInfo), behavioral
-            signals are knowable (Marketo), and early outreach sequences are templated. The parts of BDR
-            work that are most automatable are the early qualification steps. The parts that still need
-            humans are the nuanced reads: economic buyer identification, competitive displacement,
-            account context.
+            Infoblox sells network infrastructure and security to enterprise IT teams &mdash; buyers who
+            research first and engage digitally. That means firmographic fit (6Sense, ZoomInfo), behavioral
+            signals (Marketo), and early outreach sequences are all well-suited for AI-driven engagement.
+            The opportunity is to let agents handle the volume and velocity of early qualification, freeing
+            your team to focus where human judgment matters most: complex account dynamics, competitive
+            displacement, and relationship building.
           </Body>
           {lifecycle.map((l, i) => (
             <div key={i} style={{
@@ -552,14 +557,15 @@ function AgenticVision() {
             padding: "18px 22px", borderRadius: 12,
             border: `1px dashed ${C.teal.border}`, background: C.teal.bg,
           }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: C.teal.text, marginBottom: 6 }}>Impact on the BDR org</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.teal.text, marginBottom: 6 }}>What this means for the BDR team</div>
             <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
-              This does not eliminate BDRs. It restructures the role. Instead of a team handling high-volume,
-              low-judgment work (outreach cadences, scheduling, basic screening), a smaller, more senior team
-              focuses on the work that requires human skills: complex account reads, relationship building,
-              competitive situations, and the qualification meetings themselves. The agent handles the volume.
-              The humans handle the judgment. Pipeline coverage goes up. Cost per qualified meeting goes down.
-              Time from MQL to SAL compresses from days to minutes.
+              This is about elevating the role, not eliminating it. Agents absorb the high-volume,
+              repetitive work &mdash; outreach cadences, scheduling, initial screening &mdash; so your
+              team can focus on what they do best: reading complex accounts, building relationships,
+              navigating competitive situations, and running the meetings that close deals. Pipeline
+              coverage expands. Cost per qualified meeting drops. And the time from MQL to SAL
+              compresses from days to minutes, creating a faster, more responsive experience for
+              your buyers.
             </div>
           </div>
         </div>
@@ -568,10 +574,11 @@ function AgenticVision() {
       {activeTab === "stack" && (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <Body style={{ marginBottom: 8 }}>
-            Before layering agents on top of 30+ platforms, consolidate the foundation. Otherwise you are
-            building AI on top of sprawl, which means agents that cannot see across the data they need to
-            act on. The logic: maximize what Marketo and Salesforce do natively, keep what is genuinely
-            differentiated, and assess the rest.
+            Agents perform best when they can see the full picture in one place. Consolidating around
+            Marketo and Salesforce &mdash; the platforms you have already invested in &mdash; means fewer
+            integration seams, richer context for AI, and a simpler stack to operate. The approach:
+            lean into what those platforms do natively, keep what is genuinely differentiated, and
+            assess the rest through discovery.
           </Body>
           {consolidation.map((c, i) => {
             const actionColor = c.action === "Consolidate" ? C.green : c.action === "Assess" ? C.teal : C.blue;
@@ -601,10 +608,11 @@ function AgenticVision() {
       {activeTab === "horizons" && (
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <Body style={{ marginBottom: 8 }}>
-            Three horizons, each building on the last. Horizon 1 is what Infoblox asked for. Horizon 2
-            is the differentiated point of view that shows we are thinking about where they are going.
-            Horizon 3 is the long-term partnership opportunity. All grounded in Infoblox&rsquo;s stated
-            &ldquo;AI Ready&rdquo; guiding principle and native to their Adobe/Salesforce ecosystem.
+            Each horizon builds on the one before it &mdash; and each delivers standalone value. The
+            architecture work in Horizon 1 immediately improves pipeline visibility and conversion rates.
+            Horizon 2 multiplies that impact with AI-driven qualification. Horizon 3 extends the
+            intelligence across the full customer lifecycle. All native to the Adobe and Salesforce
+            ecosystem you have already committed to.
           </Body>
           {horizons.map((h, i) => (
             <div key={i} style={{
@@ -624,14 +632,15 @@ function AgenticVision() {
             padding: "18px 22px", borderRadius: 12,
             border: `1px dashed ${C.green.border}`, background: C.green.bg,
           }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: C.green.text, marginBottom: 6 }}>Why this strengthens the case for Option 2</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.green.text, marginBottom: 6 }}>How this connects to the engagement options</div>
             <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
-              Option 2 (unwind) gives you a clean, standard architecture that agents can plug into.
-              Option 3 (full reimplementation) delays the agentic opportunity by 6&ndash;12 months.
-              Option 1 (do nothing) makes agents nearly impossible because the data model cannot
-              support them. The 8-week engagement naturally surfaces the data needed to design
-              Horizon 2: outreach channel mix, BDR activity patterns, and qualification conversion
-              rates by method.
+              Option 2 (unwind) delivers a clean, standard architecture that is immediately ready for
+              agentic capabilities. It is also the fastest path to Horizon 2 &mdash; the 8-week engagement
+              naturally surfaces the data needed to design the agentic layer: outreach channel mix, BDR
+              activity patterns, and qualification conversion rates. Option 3 (full reimplementation)
+              reaches the same destination but extends the timeline by 6&ndash;12 months. Option 1 (do
+              nothing) leaves the current architecture in place, which limits the ability to adopt
+              AI-driven qualification at scale.
             </div>
           </div>
         </div>
