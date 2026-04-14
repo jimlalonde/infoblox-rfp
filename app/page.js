@@ -378,12 +378,11 @@ function WhatsPossibleIntro() {
     <section id="process" style={{ padding: "clamp(60px, 10vw, 100px) 24px 0" }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <SectionLabel>What&rsquo;s possible</SectionLabel>
-        <SectionTitle>A better architecture, and everything it enables</SectionTitle>
+        <SectionTitle>A lifecycle that works. A pipeline that thinks.</SectionTitle>
         <Body>
-          The observations above point to a common root cause: an architecture that has drifted from
-          how Infoblox operates today. The three sections that follow lay out what a redesigned
-          lifecycle could look like, how AI and platform consolidation build on that foundation, and
-          what it all means for the reporting and analytics that drive executive decision-making.
+          The sections that follow lay out what a redesigned lifecycle could look like, how AI and
+          platform consolidation build on that foundation, and what it all means for the reporting
+          and analytics that drive executive decision-making.
         </Body>
       </div>
     </section>
