@@ -214,8 +214,8 @@ function Hero() {
           color: C.muted, maxWidth: 540, margin: "0 0 48px",
         }}>
           A proposal to simplify the revenue lifecycle across Salesforce and Marketo,
-          moving from Vista BOSS-era architecture to a modern operating model built for
-          how Infoblox sells today.
+          moving from Vista BOSS-era architecture to a modern, AI-ready operating model
+          built for how Infoblox sells today and where the market is heading tomorrow.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
           {[
