@@ -230,7 +230,7 @@ function Hero() {
               textDecoration: "none", letterSpacing: "-0.01em",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => e.currentTarget.style.background = "#33cb6f"}
+            onMouseEnter={e => e.currentTarget.style.background = C.blue.accent}
             onMouseLeave={e => e.currentTarget.style.background = C.brand}
             >{btn.label} &rarr;</a>
           ))}
