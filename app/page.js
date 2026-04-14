@@ -428,21 +428,21 @@ function AgenticVision() {
     {
       num: "H1",
       title: "Build the foundation",
-      subtitle: "The 8-week engagement",
-      description: "Restore object model integrity, align lifecycle stages, recalibrate scoring, and create a governed conversion gate. This work immediately improves pipeline visibility and conversion accuracy \u2014 and it creates the clean data layer that makes everything in Horizons 2 and 3 possible. A stack rationalization assessment runs in parallel to identify consolidation opportunities.",
+      subtitle: "Implementation, informed by the diagnostic",
+      description: "Using the architecture and roadmap delivered by the 8-week diagnostic, restore object model integrity, align lifecycle stages, recalibrate scoring, and create a governed conversion gate. This work immediately improves pipeline visibility and conversion accuracy \u2014 and it creates the clean data layer that makes everything in Horizons 2 and 3 possible. A stack rationalization workstream runs in parallel to identify consolidation opportunities.",
       color: C.green.accent,
     },
     {
       num: "H2",
       title: "Activate the agentic layer",
-      subtitle: "Scoped engagement, building on H1",
+      subtitle: "Building on the clean foundation",
       description: "With clean lifecycle data in place, introduce Agentforce SDR for AI-driven early qualification. Consolidate overlapping tools to simplify the integration landscape. Design human/agent hybrid workflows with clear escalation paths \u2014 so agents handle the volume and your team handles the judgment calls.",
       color: C.teal.accent,
     },
     {
       num: "H3",
       title: "Extend intelligence across the lifecycle",
-      subtitle: "Ongoing partnership",
+      subtitle: "Ongoing optimization",
       description: "Expand agentic capabilities beyond qualification into post-conversion: re-engaging stalled opportunities, automating proposal follow-up, and surfacing upsell signals. Add Sales Coach for meeting prep. Build feedback loops where agent performance continuously refines the scoring model.",
       color: C.blue.accent,
     },
@@ -609,11 +609,10 @@ function AgenticVision() {
       {activeTab === "horizons" && (
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <Body style={{ marginBottom: 8 }}>
-            Each horizon builds on the one before it &mdash; and each delivers standalone value. The
-            architecture work in Horizon 1 immediately improves pipeline visibility and conversion rates.
-            Horizon 2 multiplies that impact with AI-driven qualification. Horizon 3 extends the
-            intelligence across the full customer lifecycle. All native to the Adobe and Salesforce
-            ecosystem you have already committed to.
+            The 8-week diagnostic produces the architecture blueprint, validated recommendations, and
+            implementation roadmap. These three horizons represent the execution path that follows &mdash;
+            each building on the one before it, each delivering standalone value. All native to the Adobe
+            and Salesforce ecosystem you have already committed to.
           </Body>
           {horizons.map((h, i) => (
             <div key={i} style={{
@@ -633,15 +632,14 @@ function AgenticVision() {
             padding: "18px 22px", borderRadius: 12,
             border: `1px dashed ${C.green.border}`, background: C.green.bg,
           }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: C.green.text, marginBottom: 6 }}>How this connects to the engagement options</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: C.green.text, marginBottom: 6 }}>How the diagnostic shapes these horizons</div>
             <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
-              Option 2 (unwind) delivers a clean, standard architecture that is immediately ready for
-              agentic capabilities. It is also the fastest path to Horizon 2 &mdash; the 8-week engagement
-              naturally surfaces the data needed to design the agentic layer: outreach channel mix, BDR
-              activity patterns, and qualification conversion rates. Option 3 (full reimplementation)
-              reaches the same destination but extends the timeline by 6&ndash;12 months. Option 1 (do
-              nothing) leaves the current architecture in place, which limits the ability to adopt
-              AI-driven qualification at scale.
+              The 8-week diagnostic does more than assess the current state &mdash; it produces the
+              architecture blueprint and implementation roadmap that Horizon 1 executes against. It also
+              surfaces the data needed to scope Horizon 2: outreach channel mix, BDR activity patterns,
+              and qualification conversion rates. The engagement options evaluated in the diagnostic
+              (unwind vs. reimplementation vs. status quo) directly determine the speed and shape of
+              each horizon.
             </div>
           </div>
         </div>
