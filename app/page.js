@@ -153,7 +153,7 @@ function Nav() {
                   color: isActive ? activeColor : C.muted,
                   textDecoration: "none", transition: "color 0.2s, font-weight 0.2s",
                 }}
-                onMouseEnter={e => { if (!isActive) e.target.style.color = C.blue.accent; }}
+                onMouseEnter={e => { if (!isActive) e.target.style.color = l.href === "#why-pwc" ? "#D04A02" : C.blue.accent; }}
                 onMouseLeave={e => { if (!isActive) e.target.style.color = C.muted; }}
                 >{l.label}</a>
               );
