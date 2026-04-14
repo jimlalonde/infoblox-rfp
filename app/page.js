@@ -98,7 +98,7 @@ function Nav() {
 
   const sectionToNav = {
     diagnostic: "#diagnostic",
-    process: "#process", agentic: "#process", reporting: "#process",
+    process: "#process", "process-flow": "#process", agentic: "#process", reporting: "#process",
     approach: "#approach", timeline: "#approach",
     team: "#team",
     commercials: "#commercials", "why-pwc": "#commercials",
@@ -247,7 +247,7 @@ function Diagnostic() {
   ];
   return (
     <Section id="diagnostic">
-      <SectionLabel>Diagnostic</SectionLabel>
+      <SectionLabel>Initial thoughts</SectionLabel>
       <SectionTitle>What we see in the current architecture</SectionTitle>
       <Body>
         Your current lead-to-opportunity structure was implemented as part of Vista BOSS standardization,
@@ -364,14 +364,32 @@ function StageCard({ stage, zone }) {
   );
 }
 
+/* ─── WHAT'S POSSIBLE INTRO ─── */
+function WhatsPossibleIntro() {
+  return (
+    <section id="process" style={{ padding: "clamp(60px, 10vw, 100px) 24px 0" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <SectionLabel>What&rsquo;s possible</SectionLabel>
+        <SectionTitle>A better architecture, and everything it enables</SectionTitle>
+        <Body>
+          The observations above point to a common root cause: an architecture that has drifted from
+          how Infoblox operates today. The three sections that follow lay out what a redesigned
+          lifecycle could look like, how AI and platform consolidation build on that foundation, and
+          what it all means for the reporting and analytics that drive executive decision-making.
+        </Body>
+      </div>
+    </section>
+  );
+}
+
 function ProcessFlow() {
   const [tab, setTab] = useState("current");
   const tabs = [{ id: "current", label: "Current state" }, { id: "future", label: "Possible future" }, { id: "delta", label: "Key changes" }];
   const data = tab === "current" ? STAGES_CURRENT : STAGES_FUTURE;
 
   return (
-    <Section id="process">
-      <SectionLabel>Process architecture</SectionLabel>
+    <Section id="process-flow">
+      <SectionLabel>Lifecycle design</SectionLabel>
       <SectionTitle>From / To lifecycle design</SectionTitle>
       <Body>
         The current-state map below reflects what we have observed across your Salesforce and Marketo
@@ -527,8 +545,8 @@ function AgenticVision() {
 
   return (
     <Section id="agentic">
-      <SectionLabel>Designed for what&rsquo;s next</SectionLabel>
-      <SectionTitle>The agentic opportunity</SectionTitle>
+      <SectionLabel>The agentic layer</SectionLabel>
+      <SectionTitle>Designed for what&rsquo;s next</SectionTitle>
       <Body>
         The lifecycle architecture we outlined in the previous section does more than resolve today&rsquo;s
         structural issues. It creates the clean foundation &mdash; standardized stages, reliable scoring,
@@ -716,7 +734,7 @@ function Reporting() {
 
   return (
     <Section id="reporting">
-      <SectionLabel>Reporting &amp; analytics</SectionLabel>
+      <SectionLabel>Reporting impact</SectionLabel>
       <SectionTitle>From manual assembly to live intelligence</SectionTitle>
       <Body>
         One of the most immediate benefits of cleaning up the lifecycle architecture is what it does
@@ -1201,6 +1219,7 @@ export default function App() {
       <Nav />
       <Hero />
       <Diagnostic />
+      <WhatsPossibleIntro />
       <ProcessFlow />
       <AgenticVision />
       <Reporting />
