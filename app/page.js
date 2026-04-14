@@ -837,7 +837,7 @@ function Approach() {
   return (
     <Section id="approach" dark>
       <SectionLabel dark>Engagement approach</SectionLabel>
-      <SectionTitle dark>How we would deliver this</SectionTitle>
+      <SectionTitle dark>How we would work with you</SectionTitle>
       <Body dark>
         This first phase is an 8-week diagnostic-to-roadmap engagement. The goal is not just to tell
         you what is wrong. You already know that. The goal is to give you a clear, quantified basis for
