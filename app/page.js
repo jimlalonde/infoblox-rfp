@@ -368,9 +368,9 @@ function ProcessFlow() {
           <button key={t.id} onClick={() => setTab(t.id)} style={{
             flex: 1, padding: "10px 12px", border: "none", cursor: "pointer", borderRadius: 9,
             fontSize: 13, fontWeight: tab === t.id ? 600 : 500, fontFamily: "inherit",
-            color: tab === t.id ? C.text : C.hint,
-            background: tab === t.id ? "#fff" : "transparent",
-            boxShadow: tab === t.id ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
+            color: tab === t.id ? "#fff" : C.hint,
+            background: tab === t.id ? C.brand : "transparent",
+            boxShadow: tab === t.id ? "0 1px 3px rgba(0,0,0,0.12)" : "none",
             transition: "all 0.2s",
           }}>{t.label}</button>
         ))}
@@ -525,9 +525,9 @@ function AgenticVision() {
           <button key={t.id} onClick={() => setActiveTab(t.id)} style={{
             flex: 1, padding: "10px 12px", border: "none", cursor: "pointer", borderRadius: 9,
             fontSize: 13, fontWeight: activeTab === t.id ? 600 : 500, fontFamily: "inherit",
-            color: activeTab === t.id ? C.text : C.hint,
-            background: activeTab === t.id ? "#fff" : "transparent",
-            boxShadow: activeTab === t.id ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
+            color: activeTab === t.id ? "#fff" : C.hint,
+            background: activeTab === t.id ? C.brand : "transparent",
+            boxShadow: activeTab === t.id ? "0 1px 3px rgba(0,0,0,0.12)" : "none",
             transition: "all 0.2s",
           }}>{t.label}</button>
         ))}
