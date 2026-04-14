@@ -146,10 +146,11 @@ function Nav() {
           <div className="nav-links" style={{ display: "flex", gap: 24 }}>
             {links.map(l => {
               const isActive = activeHref === l.href;
+              const activeColor = l.href === "#why-pwc" ? "#D04A02" : C.brand;
               return (
                 <a key={l.href} href={l.href} style={{
                   fontSize: 12, fontWeight: isActive ? 700 : 500,
-                  color: isActive ? C.brand : C.muted,
+                  color: isActive ? activeColor : C.muted,
                   textDecoration: "none", transition: "color 0.2s, font-weight 0.2s",
                 }}
                 onMouseEnter={e => { if (!isActive) e.target.style.color = C.blue.accent; }}
