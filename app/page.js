@@ -212,9 +212,10 @@ function Hero() {
 function Diagnostic() {
   const findings = [
     { label: "Structural", title: "Leads managed as Opportunities", body: "The qualification funnel was built inside the Opportunity object rather than the Lead object. MQLs are defined as Opportunities created by BDRs, collapsing qualification and conversion into a single premature step." },
-    { label: "Operational", title: "Dual-object complexity", body: "BDRs toggle between Lead and Contact views. No robust cross-object deduplication. Account matching fails for new and small accounts. Opportunity Roles and Teams are underutilized." },
+    { label: "Operational", title: "Dual-object complexity", body: "BDRs toggle between Lead and Contact views. No robust cross-object deduplication. Account matching fails for new and small accounts, which cascades into unreliable lead routing to partner and channel teams. Opportunity Roles and Teams are underutilized." },
     { label: "Downstream", title: "Reporting and attribution breakdown", body: "Tableau stitches Leads + Contacts into a person table. Any model change requires query and data structure updates. Bizible/Marketo Measure attribution is unreliable across the split objects." },
     { label: "Governance", title: "No source of truth", body: "Lack of governance across data sources, field definitions, and usage. Unified reporting and attribution are impossible because of the separate lead and contact objects." },
+    { label: "Account complexity", title: "Account structures not built for current GTM", body: "Multi-layered account model (end-user, partner, MSSP, parent/child hierarchies) with 8% of RCNs spanning multiple geographies and reps. Territory assignment, enrichment data flow, and lead-to-account matching all compound the structural issues upstream." },
   ];
   return (
     <Section id="diagnostic">
@@ -282,6 +283,8 @@ const KEY_CHANGES = [
     { title: "Lead Conversion gate moved to SQL", description: "SFDC Lead Conversion fires at SQL, creating Contact + Account + Opportunity in one governed event." },
     { title: "BDR single-object workflow", description: "BDRs work exclusively on the Lead object until conversion." },
     { title: "Opp Roles and Teams activated", description: "Contact Roles and Opportunity Teams for multi-threading and attribution." },
+    { title: "Marketplace opportunity integration", description: "Assess marketplace-originated opportunity workflows and align them with the redesigned lifecycle stages, ensuring consistent attribution and pipeline reporting regardless of origination channel." },
+    { title: "Partner and channel routing assessment", description: "Map the current lead routing logic for partner and channel flows. Assess how the redesigned lifecycle and conversion gate impact partner lead distribution, and flag implementation considerations for future phases." },
   ]},
   { category: "Marketo and marketing automation", items: [
     { title: "Lifecycle program redesign", description: "Rebuild Marketo lifecycle programs to align with the new stage definitions. MQL triggers alerts, not Opportunity creation." },
@@ -301,6 +304,7 @@ const KEY_CHANGES = [
     { title: "SLAs with enforcement", description: "48-hr BDR acceptance with auto-escalation. Measured weekly." },
     { title: "Field governance", description: "Source of truth per field. Custom field audit. Definitions aligned across all systems." },
     { title: "Duplicate management", description: "Activate native Salesforce duplicate rules and matching rules across Leads, Accounts, and Contacts. Establish merge protocols and ongoing monitoring to prevent data degradation." },
+    { title: "Contact management and enrichment strategy", description: "Define the contact data model post-conversion: enrichment sources (ZoomInfo, Dun & Bradstreet), field standardization, lifecycle management for contacts that don\u2019t convert to opportunities, and ongoing data quality maintenance." },
   ]},
 ];
 
@@ -747,7 +751,8 @@ function Approach() {
       name: "Discover & diagnose",
       weeks: "Weeks 1\u20133",
       deliverables: [
-        "Current-state documentation: end-to-end lead-to-opp flow, data model map, automation inventory (Apex triggers, flows, Marketo smart campaigns)",
+        "Current-state documentation: end-to-end lead-to-opp flow, data model map, marketplace opportunity flows, contact data quality and enrichment coverage, automation inventory (Apex triggers, flows, Marketo smart campaigns)",
+        "Account structure analysis: territory model (ETM), hierarchy and parent/child relationships, RCN multi-geo ownership patterns, partner/MSSP/end-user segmentation, and enrichment data flow",
         "Stakeholder interviews across Sales Ops, Marketing Ops, IT, BDR leadership, and Sales leadership",
         "Pain point validation and quantification: conversion rates by stage, time-in-stage, lead leakage, SLA adherence",
         "Cost-of-doing-nothing baseline with projected operational and opportunity costs over 12 months",
@@ -760,8 +765,8 @@ function Approach() {
       weeks: "Weeks 4\u20136",
       deliverables: [
         "Option 1/2/3 evaluation with detailed cost, risk, effort, and timeline comparison",
-        "Recommended architecture: target-state data model, lifecycle stage definitions, conversion rules, scoring model framework, SLA structure",
-        "Impact assessment for downstream systems: Tableau, Clari, Bizible, LeanData, partner routing",
+        "Recommended architecture: target-state data model, account structure recommendations, lifecycle stage definitions, conversion rules, scoring model framework, SLA structure",
+        "Impact assessment for downstream systems and channel workflows: Tableau, Clari, Bizible, LeanData, partner/channel lead routing, and marketplace opportunity flows",
         "Workshop series (3 sessions): Architecture review, Process design, Roadmap prioritization",
       ],
       outcomes: "Steerco-ready recommendation with a clear path forward. Decision gate: Infoblox selects the option and approves the implementation roadmap.",
