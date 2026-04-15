@@ -99,7 +99,7 @@ function Nav() {
 
   const sectionToNav = {
     diagnostic: "#diagnostic",
-    process: "#process", "process-flow": "#process", agentic: "#process", reporting: "#process",
+    process: "#process", "process-flow": "#process", agentic: "#process", reporting: "#process", "path-decision": "#process",
     approach: "#approach", timeline: "#approach",
     team: "#team",
     commercials: "#commercials",
@@ -796,9 +796,281 @@ function Reporting() {
   );
 }
 
+/* ─── PATH DECISION ─── */
+function PathDecision() {
+  const [activeTab, setActiveTab] = useState("brownfield");
+  const tabs = [
+    { id: "brownfield", label: "Brownfield" },
+    { id: "greenfield", label: "Greenfield" },
+    { id: "hybrid", label: "Hybrid (recommended)" },
+    { id: "scorecard", label: "Decision scorecard" },
+  ];
+
+  const paths = {
+    brownfield: {
+      title: "Modernize in place",
+      intro: "Preserve the existing Salesforce org and its integrations. Restructure the lead lifecycle, scoring models, and Marketo sync within the current architecture.",
+      pros: [
+        "Revenue Cloud upgrade is preserved \u2014 no re-implementation of ARM/CPQ configuration, product catalog, pricing rules, or approval workflows",
+        "Service Cloud history and case relationships retain full customer context",
+        "Boundary system integrations (ERP, billing, partner portal) stay intact",
+        "Sales teams keep their existing workflows and pipeline views \u2014 lower adoption risk",
+        "Faster time to value: no parallel-run period or environment migration",
+      ],
+      cons: [
+        "Inherited tech debt constrains design choices \u2014 the lead lifecycle redesign must work around existing object relationships",
+        "Layers of retired automation, custom fields, and stale metadata slow down every configuration change",
+        "If the root cause of friction is the data model itself, brownfield can mean cleaning up debt without reaching the actual lead gen improvements",
+      ],
+      bestFit: "The existing org is messy but structurally sound. Data quality issues are addressable, integrations are valuable, and the Revenue Cloud and Service Cloud investments anchor the org.",
+    },
+    greenfield: {
+      title: "Net new org + Marketo instance",
+      intro: "Stand up a clean Salesforce org and fresh Marketo instance. Design the lead lifecycle, data model, and integrations from scratch with the end state in mind.",
+      pros: [
+        "No inherited tech debt \u2014 data model, scoring, nurture architecture, and handoff logic all built to best practice",
+        "Full design freedom for lifecycle stages, object relationships, and automation patterns",
+        "Clean separation from legacy processes that no longer reflect how Infoblox sells",
+      ],
+      cons: [
+        "Revenue Cloud must be re-implemented in the new org \u2014 significant cost and risk given the recent upgrade",
+        "Service Cloud processes, case history, and knowledge base require migration or duplication",
+        "Every boundary system integration must be rebuilt: ERP, billing, partner/channel data flows, enrichment providers",
+        "Parallel-run period creates operational complexity and adoption risk across all teams",
+        "Longer timeline and higher total investment than modernizing in place",
+      ],
+      bestFit: "The current org is truly unsalvageable \u2014 poor data quality throughout, wildly non-standard architecture, or the lead gen motion is being spun into a separate business unit.",
+    },
+    hybrid: {
+      title: "Brownfield Salesforce + fresh Marketo",
+      intro: "Keep the Salesforce org and its integrations intact. Stand up a new Marketo instance with clean workspace structure, rebuilt program templates, and recalibrated scoring. This is often the most pragmatic path.",
+      pros: [
+        "Preserves all Salesforce investments: Revenue Cloud, Service Cloud, integrations, sales workflows",
+        "Marketo instances are far more portable \u2014 the consequences of starting fresh are lower than in SFDC",
+        "Clean Marketo means rebuilt lifecycle programs, fresh scoring models, and rationalized sync architecture from day one",
+        "Addresses the most common root cause: Marketo-side sync debt, stale nurture programs, and scoring models that haven\u2019t been updated in years",
+        "Shortest path to a working lead lifecycle that supports both current operations and the agentic future",
+      ],
+      cons: [
+        "Still requires cleanup on the Salesforce side \u2014 the brownfield constraints apply to SFDC object model and automation",
+        "Migration of historical Marketo data (engagement history, program membership) requires planning",
+      ],
+      bestFit: "The Salesforce org is structurally sound but the Marketo instance has accumulated significant sync debt, stale programs, and scoring models that no longer reflect the buying motion. This is the most likely landing zone for Infoblox.",
+    },
+  };
+
+  const decisionFactors = [
+    { factor: "Data quality and model integrity", description: "Pull the Marketo sync error rate, look at duplicate rates, examine lifecycle stage consistency. If it\u2019s messy but manageable, brownfield wins. If you don\u2019t know what\u2019s in the org, the calculus shifts." },
+    { factor: "Integration footprint", description: "Map every system that reads from or writes to the current org. For Infoblox \u2014 with channel/partner motions and billing/entitlement connections \u2014 this list is long. That list is the strongest argument for brownfield." },
+    { factor: "Revenue Cloud investment", description: "The recent upgrade is a near-disqualifier for greenfield. A net new org means re-implementing ARM/CPQ configuration, product catalog, pricing rules, and approval workflows. Unless there are specific architectural problems, starting over erases real sunk value." },
+    { factor: "Marketo vs. Salesforce evaluated separately", description: "The right answer may be different for each platform. Marketo instances are portable and the cost of starting fresh is far lower than doing the same in Salesforce." },
+    { factor: "Change appetite and timeline", description: "Greenfield implies a longer parallel-run period and more organizational change management. If there\u2019s a hard timeline tied to a product launch or fiscal boundary, brownfield with phased cleanup is more achievable." },
+  ];
+
+  const scorecardCriteria = [
+    { label: "Data model integrity", low: "Clean", high: "Needs rebuild", weight: 1 },
+    { label: "Marketo sync health", low: "Stable", high: "Critical issues", weight: 1 },
+    { label: "Lead lifecycle clarity", low: "Well-defined", high: "Undefined", weight: 1 },
+    { label: "Automation complexity", low: "Manageable", high: "Unauditable", weight: 1 },
+    { label: "Custom code volume", low: "Minimal Apex", high: "Heavy custom", weight: 1 },
+    { label: "Integration density", low: "Few systems", high: "Deeply embedded", weight: 2 },
+    { label: "Revenue Cloud recency", low: "Just upgraded", high: "Legacy/none", weight: 2 },
+    { label: "Service Cloud dependency", low: "Heavy", high: "Minimal", weight: 1 },
+    { label: "Data quality confidence", low: "High", high: "Unknown", weight: 1 },
+    { label: "Change mgmt capacity", low: "High appetite", high: "Change-fatigued", weight: 1 },
+    { label: "Timeline pressure", low: "Flexible", high: "Hard deadline", weight: 1 },
+  ];
+
+  const defaults = [2, 3, 4, 3, 2, 4, 1, 2, 3, 3, 3];
+  const [scores, setScores] = useState(defaults);
+  const weightedTotal = scores.reduce((sum, s, i) => sum + s * scorecardCriteria[i].weight, 0);
+  const weightedMax = scorecardCriteria.reduce((sum, c) => sum + 5 * c.weight, 0);
+  const verdict = weightedTotal <= 26 ? { label: "Brownfield recommended", sub: "Modernize in place", color: C.green }
+    : weightedTotal <= 45 ? { label: "Hybrid recommended", sub: "Brownfield SFDC + fresh Marketo", color: C.teal }
+    : { label: "Greenfield recommended", sub: "Net new org", color: C.blue };
+
+  return (
+    <Section id="path-decision">
+      <SectionLabel>Strategic path</SectionLabel>
+      <SectionTitle>Greenfield vs. brownfield &mdash; and why the answer isn&rsquo;t binary</SectionTitle>
+      <Body>
+        Infoblox has a decade-old Salesforce org with a recently upgraded Revenue Cloud, an active
+        Service Cloud deployment, and deep integrations across boundary systems. The desire for a clean
+        architecture is real, but so is the cost of walking away from those investments. The right path
+        depends on what the data tells us about the health of the current environment.
+      </Body>
+      <Body style={{ marginBottom: 32 }}>
+        We see three options. The diagnostic engagement is designed to produce the evidence that makes
+        this decision with confidence.
+      </Body>
+
+      <div style={{ display: "flex", gap: 4, marginBottom: 32, padding: 4, background: "rgba(0,0,0,0.03)", borderRadius: 12, flexWrap: "wrap" }}>
+        {tabs.map(t => {
+          const isActive = activeTab === t.id;
+          return (
+            <button key={t.id} onClick={() => setActiveTab(t.id)} style={{
+              flex: "1 1 auto", padding: "10px 12px", border: "none", cursor: "pointer", borderRadius: 9,
+              fontSize: 13, fontWeight: isActive ? 600 : 500, fontFamily: "inherit",
+              color: isActive ? "#fff" : C.hint,
+              background: isActive ? C.brand : "transparent",
+              boxShadow: isActive ? "0 1px 3px rgba(0,0,0,0.12)" : "none",
+              transition: "all 0.2s",
+            }}>{t.label}</button>
+          );
+        })}
+      </div>
+
+      {activeTab !== "scorecard" && (() => {
+        const p = paths[activeTab];
+        return (
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ padding: "24px", borderRadius: 14, border: `1px solid ${C.faint}`, background: C.surface }}>
+              <div style={{ fontSize: 18, fontWeight: 700, color: C.text, marginBottom: 8, letterSpacing: "-0.01em" }}>{p.title}</div>
+              <div style={{ fontSize: 14, lineHeight: 1.7, color: C.muted, marginBottom: 20 }}>{p.intro}</div>
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 600, color: C.green.text, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>Advantages</div>
+                {p.pros.map((pro, i) => (
+                  <div key={i} style={{ display: "flex", gap: 8, marginBottom: 6, fontSize: 13, lineHeight: 1.6, color: C.muted }}>
+                    <span style={{ color: C.green.accent, flexShrink: 0 }}>{"\u2713"}</span><span>{pro}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 600, color: C.red, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>Trade-offs</div>
+                {p.cons.map((con, i) => (
+                  <div key={i} style={{ display: "flex", gap: 8, marginBottom: 6, fontSize: 13, lineHeight: 1.6, color: C.muted }}>
+                    <span style={{ color: C.red, flexShrink: 0 }}>{"\u26A0"}</span><span>{con}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ padding: "14px 18px", borderRadius: 10, background: C.green.bg, border: `1px solid ${C.green.border}` }}>
+                <div style={{ fontSize: 11, fontWeight: 600, color: C.green.text, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>Best fit when</div>
+                <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>{p.bestFit}</div>
+              </div>
+            </div>
+
+            {activeTab === "hybrid" && (
+              <div style={{ padding: "18px 22px", borderRadius: 12, border: `1px dashed ${C.teal.border}`, background: C.teal.bg }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: C.teal.text, marginBottom: 6 }}>Our initial hypothesis for Infoblox</div>
+                <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
+                  Based on what we know today &mdash; recent Revenue Cloud upgrade, active Service Cloud,
+                  broad integration footprint &mdash; the hybrid path is the most likely recommendation. But
+                  hypotheses need evidence. The tech health assessment and diagnostic engagement are
+                  designed to confirm or redirect this call with data, not assumptions.
+                </div>
+              </div>
+            )}
+
+            <div style={{ fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8, marginTop: 8, paddingBottom: 8, borderBottom: `1px solid ${C.faint}` }}>Critical decision factors</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {decisionFactors.map((d, i) => (
+                <div key={i} style={{ padding: "14px 18px", borderRadius: 10, border: `1px solid ${C.faint}`, background: C.surface }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 4 }}>{d.factor}</div>
+                  <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>{d.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
+      {activeTab === "scorecard" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <Body style={{ marginBottom: 8 }}>
+            Score each criterion from 1 to 5 based on your current environment. Criteria marked with
+            &times;2 carry double weight in the recommendation. The default values reflect our initial
+            read of Infoblox&rsquo;s profile &mdash; adjust based on your team&rsquo;s knowledge.
+          </Body>
+
+          <div style={{ borderRadius: 14, border: `1px solid ${C.faint}`, background: C.surface, overflow: "hidden" }}>
+            <div style={{ display: "flex", padding: "12px 20px", borderBottom: `1px solid ${C.faint}`, background: "rgba(0,0,0,0.02)" }}>
+              <span style={{ flex: "1 1 200px", fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em" }}>Criterion</span>
+              <span style={{ width: 200, fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em", textAlign: "center" }}>Score</span>
+              <span style={{ width: 50, fontSize: 11, fontWeight: 600, color: C.hint, textTransform: "uppercase", letterSpacing: "0.06em", textAlign: "right" }}>Wt</span>
+            </div>
+            {scorecardCriteria.map((c, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", padding: "10px 20px", borderBottom: i < scorecardCriteria.length - 1 ? `1px solid ${C.faint}` : "none", flexWrap: "wrap", gap: 8 }}>
+                <div style={{ flex: "1 1 200px", minWidth: 160 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: C.text }}>{c.label}</div>
+                  <div style={{ fontSize: 10, color: C.hint }}>{c.low} &larr; &rarr; {c.high}</div>
+                </div>
+                <div style={{ width: 200, display: "flex", gap: 4, justifyContent: "center" }}>
+                  {[1,2,3,4,5].map(n => (
+                    <button key={n} onClick={() => { const next = [...scores]; next[i] = n; setScores(next); }} style={{
+                      width: 34, height: 34, borderRadius: 8, border: "none", cursor: "pointer",
+                      fontSize: 13, fontWeight: 600, fontFamily: "inherit",
+                      background: scores[i] === n ? C.brand : "rgba(0,0,0,0.04)",
+                      color: scores[i] === n ? "#fff" : C.hint,
+                      transition: "all 0.15s",
+                    }}>{n}</button>
+                  ))}
+                </div>
+                <div style={{ width: 50, textAlign: "right", fontSize: 12, fontWeight: 600, color: c.weight > 1 ? C.brand : C.hint }}>&times;{c.weight}</div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{
+            padding: "24px", borderRadius: 14,
+            border: `1px solid ${verdict.color.border}`,
+            background: verdict.color.bg,
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            flexWrap: "wrap", gap: 16,
+          }}>
+            <div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: verdict.color.text, letterSpacing: "-0.02em" }}>{verdict.label}</div>
+              <div style={{ fontSize: 13, color: C.muted, marginTop: 2 }}>{verdict.sub}</div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div style={{ fontSize: 32, fontWeight: 800, color: verdict.color.accent, letterSpacing: "-0.03em" }}>{weightedTotal}</div>
+              <div style={{ fontSize: 11, color: C.hint }}>of {weightedMax} weighted points</div>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {[
+              { range: "13\u201326", label: "Brownfield", color: C.green },
+              { range: "27\u201345", label: "Hybrid", color: C.teal },
+              { range: "46\u201365", label: "Greenfield", color: C.blue },
+            ].map((band, i) => (
+              <div key={i} style={{
+                flex: "1 1 120px", padding: "10px 14px", borderRadius: 8,
+                background: band.color.bg, border: `1px solid ${band.color.border}`,
+                fontSize: 12, color: band.color.text, fontWeight: 600, textAlign: "center",
+              }}>{band.range}: {band.label}</div>
+            ))}
+          </div>
+
+          <div style={{ padding: "14px 18px", borderRadius: 10, border: `1px dashed ${C.green.border}`, background: C.green.bg }}>
+            <div style={{ fontSize: 13, lineHeight: 1.6, color: C.muted }}>
+              <strong style={{ color: C.green.text }}>Use this in a live session.</strong> Fill out the
+              scorecard with Marketing Ops, Sales Ops, and IT stakeholders in the room. The conversation
+              that happens while scoring each criterion is often more valuable than the final number.
+            </div>
+          </div>
+        </div>
+      )}
+    </Section>
+  );
+}
+
 /* ─── APPROACH ─── */
 function Approach() {
   const phases = [
+    {
+      num: "00",
+      name: "Tech health assessment",
+      weeks: "2\u20133 weeks (optional pre-engagement)",
+      deliverables: [
+        "Marketo\u2013SFDC sync audit: sync error rates, duplicate contact/lead rates, field mapping gaps",
+        "SFDC org health assessment: custom metadata volume, automation complexity (Process Builder vs. Flow vs. Apex), object utilization",
+        "Lead lifecycle mapping: current-state first-touch-to-opportunity flow including handoffs, routing logic, and conversion triggers",
+        "Integration inventory: formal list of every system integrated to the current org with data flow direction",
+        "Revenue Cloud stability confirmation: document current configuration and confirm as a stable anchor for the brownfield path",
+      ],
+      outcomes: "Evidence-based greenfield/brownfield recommendation. The 8-week design phase builds on confirmed findings rather than assumptions.",
+      aiCallout: true,
+    },
     {
       num: "01",
       name: "Discover & diagnose",
@@ -843,12 +1115,13 @@ function Approach() {
       <SectionLabel dark>Engagement approach</SectionLabel>
       <SectionTitle dark>How we will work with you</SectionTitle>
       <Body dark>
-        This first phase is an 8-week diagnostic-to-roadmap engagement. The goal is not just to tell
-        you what is wrong. You already know that. The goal is to give you a clear, quantified basis for
-        decision-making and a future-state architecture you can act on.
+        We recommend starting with a focused tech health assessment to ground the greenfield/brownfield
+        decision in evidence. From there, an 8-week diagnostic-to-roadmap engagement gives you a clear,
+        quantified basis for decision-making and a future-state architecture you can act on.
       </Body>
       <Body dark style={{ marginBottom: 40 }}>
-        Three phases, each with defined deliverables and a decision gate before proceeding.
+        An optional pre-phase plus three core phases, each with defined deliverables and a decision
+        gate before proceeding.
       </Body>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -881,6 +1154,26 @@ function Approach() {
               <div style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>Outcome</div>
               <div style={{ fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.65)" }}>{p.outcomes}</div>
             </div>
+            {p.aiCallout && (
+              <div style={{
+                marginTop: 16, padding: "16px 18px", borderRadius: 10,
+                background: "rgba(67,138,255,0.08)", border: "1px solid rgba(67,138,255,0.15)",
+              }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: C.blue.accent, marginBottom: 8 }}>AI-accelerated diagnostics</div>
+                <div style={{ fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.55)" }}>
+                  We use Claude and other AI diagnostic tools to compress this assessment from 6 weeks to 2&ndash;3.
+                  AI handles metadata analysis at scale &mdash; thousands of fields, automation rules, sync configurations &mdash;
+                  and surfaces patterns that manual review would miss. A dedicated Claude Project is loaded with org
+                  metadata exports, Marketo program documentation, and stakeholder interview notes for cross-referenced
+                  findings throughout the assessment.
+                </div>
+                <div style={{ fontSize: 12, lineHeight: 1.6, color: "rgba(255,255,255,0.4)", marginTop: 8 }}>
+                  <strong style={{ color: "rgba(255,255,255,0.55)" }}>Guardrails:</strong> All data classified before
+                  export. No PII leaves the Infoblox environment. AI handles metadata patterns; PwC practitioners
+                  apply Infoblox-specific judgment.
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -1230,6 +1523,7 @@ export default function App() {
       <ProcessFlow />
       <AgenticVision />
       <Reporting />
+      <PathDecision />
       <Approach />
       <Timeline />
       <Team />
